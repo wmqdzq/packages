@@ -341,14 +341,14 @@ public class FileSelectorApiImpl implements GeneratedFileSelectorApi.FileSelecto
       return null;
     }
 
-    final byte[] bytes = new byte[size];
-    try (InputStream inputStream = contentResolver.openInputStream(uri)) {
-      final DataInputStream dataInputStream = objectFactory.newDataInputStream(inputStream);
-      dataInputStream.readFully(bytes);
-    } catch (IOException exception) {
-      Log.w(TAG, exception.getMessage());
-      return null;
-    }
+    // final byte[] bytes = new byte[size];
+    // try (InputStream inputStream = contentResolver.openInputStream(uri)) {
+    //   final DataInputStream dataInputStream = objectFactory.newDataInputStream(inputStream);
+    //   dataInputStream.readFully(bytes);
+    // } catch (IOException exception) {
+    //   Log.w(TAG, exception.getMessage());
+    //   return null;
+    // }
 
     String uriPath;
     GeneratedFileSelectorApi.FileSelectorNativeException nativeError = null;
@@ -379,7 +379,7 @@ public class FileSelectorApiImpl implements GeneratedFileSelectorApi.FileSelecto
 
     return new GeneratedFileSelectorApi.FileResponse.Builder()
         .setName(name)
-        .setBytes(bytes)
+        .setBytes(new byte[0])
         .setPath(uriPath)
         .setMimeType(contentResolver.getType(uri))
         .setSize(size.longValue())
